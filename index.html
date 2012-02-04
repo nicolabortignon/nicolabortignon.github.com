@@ -1,1 +1,402 @@
-my GitHub Page
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>Nicola Bortignon &hearts; Open Source Software</title>
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <!-- Le HTML5 shim, for IE6-8 support of HTML elements -->
+    <!--[if lt IE 9]>
+      <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+
+    <!-- Le styles -->
+    <link href="css/bootstrap.css" rel="stylesheet">
+    <style type="text/css">
+      body {
+        padding-top: 60px;
+        padding-bottom: 40px;
+      }
+    </style>
+    <link href="css/bootstrap-responsive.css" rel="stylesheet">
+	<link href='http://fonts.googleapis.com/css?family=Lilita+One' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" type="text/css" href="http://twitter.github.com/assets/grid.css">
+    <!-- Le fav and touch icons -->
+
+    <link rel="shortcut icon" href="images/favicon.ico">
+    <link rel="apple-touch-icon" href="images/apple-touch-icon.png">
+    <link rel="apple-touch-icon" sizes="72x72" href="images/apple-touch-icon-72x72.png">
+    <link rel="apple-touch-icon" sizes="114x114" href="images/apple-touch-icon-114x114.png">
+  <script type="text/javascript" src="http://twitter.github.com/assets/jquery-1.7.1.min.js"></script>
+    <script type="text/javascript" src="js/strftime.js"></script>
+    <script type="text/javascript">
+    (function ($, undefined) {
+
+      // Put custom repo URL's in this object, keyed by repo name.
+      var repoUrls = {
+        "bootstrap": "http://twitter.github.com/bootstrap/",
+        "finagle": "http://twitter.github.com/finagle/",
+        "hogan.js": "http://twitter.github.com/hogan.js/"
+      };
+
+      function repoUrl(repo) {
+        return repoUrls[repo.name] || repo.html_url;
+      }
+
+      // Put custom repo descriptions in this object, keyed by repo name.
+      var repoDescriptions = {
+        "bootstrap": "An HTML, CSS, and JS toolkit designed to kickstart development of webapps and sites",
+        "naggati2": "A protocol builder for Netty using Scala 2.8"
+      };
+
+      function repoDescription(repo) {
+        return repoDescriptions[repo.name] || repo.description;
+      }
+
+      function addRecentlyUpdatedRepo(repo) {
+        var $item = $("<li>");
+
+        var $name = $("<a>").attr("href", repo.html_url).text(repo.name);
+        $item.append($("<span>").addClass("name").append($name));
+
+        var $time = $("<a>").attr("href", repo.html_url + "/commits").text(strftime("%h %e, %Y", repo.pushed_at));
+        $item.append($("<span>").addClass("time").append($time));
+
+        $item.append('<span class="bullet">&sdot;</span>');
+
+        var $watchers = $("<a>").attr("href", repo.html_url + "/watchers").text(repo.watchers + " watchers");
+        $item.append($("<span>").addClass("watchers").append($watchers));
+
+        $item.append('<span class="bullet">&sdot;</span>');
+
+        var $forks = $("<a>").attr("href", repo.html_url + "/network").text(repo.forks + " forks");
+        $item.append($("<span>").addClass("forks").append($forks));
+
+        $item.appendTo("#recently-updated-repos");
+      }
+
+      function addRepo(repo) {
+        var $item = $("<li>").addClass("repo grid-1 " + (repo.language || '').toLowerCase());
+        var $link = $("<a>").attr("href", repoUrl(repo)).appendTo($item);
+        $link.append($("<h2>").text(repo.name));
+        $link.append($("<h3>").text(repo.language));
+        $link.append($("<p>").text(repoDescription(repo)));
+        $item.appendTo("#repos");
+      }
+
+      $.getJSON("https://api.github.com/users/nicolabortignon/repos?callback=?", function (result) {
+        var repos = result.data;
+
+        $(function () {
+          $("#num-repos").text(repos.length);
+
+          // Convert pushed_at to Date.
+          $.each(repos, function (i, repo) {
+            repo.pushed_at = new Date(repo.pushed_at);
+
+            var weekHalfLife  = 1.146 * Math.pow(10, -9);
+
+            var pushDelta    = (new Date) - Date.parse(repo.pushed_at);
+            var createdDelta = (new Date) - Date.parse(repo.created_at);
+
+            var weightForPush = 1;
+            var weightForWatchers = 1.314 * Math.pow(10, 7);
+
+            repo.hotness = weightForPush * Math.pow(Math.E, -1 * weekHalfLife * pushDelta);
+            repo.hotness += weightForWatchers * repo.watchers / createdDelta;
+          });
+
+          // Sort by highest # of watchers.
+          repos.sort(function (a, b) {
+            if (a.hotness < b.hotness) return 1;
+            if (b.hotness < a.hotness) return -1;
+            return 0;
+          });
+
+          $.each(repos, function (i, repo) {
+            addRepo(repo);
+          });
+
+          // Sort by most-recently pushed to.
+          repos.sort(function (a, b) {
+            if (a.pushed_at < b.pushed_at) return 1;
+            if (b.pushed_at < a.pushed_at) return -1;
+            return 0;
+          });
+
+          $.each(repos.slice(0, 3), function (i, repo) {
+            addRecentlyUpdatedRepo(repo);
+          });
+        });
+      });
+
+      $.getJSON("https://api.github.com/users/nicolabortignon/followers?callback=?", function (result) {
+        var members = result.data;
+        $(function () {
+          $("#num-members").text(members.length);
+        });
+      });
+
+	$.getJSON("https://api.github.com/users/nicolabortignon/following?callback=?", function (result) {
+        var members = result.data;
+        $(function () {
+			$.each(members, function (i, member) {
+	            addFollowed(member);
+	          });
+          //	$("#num-following").text(members.length);
+        });
+      });
+	
+	 function addFollowed(repo) {
+	
+		
+		   var $item = $("<li>");
+
+	        var $name = $("<a>").attr("href", "http://github.com/"+repo.login).text(repo.login);
+	        $item.append($("<span>").addClass("name").append($name));
+
+		
+		
+       // var $link = $("<a>").attr("href", repoUrl(repo)).appendTo($item);
+       // $link.append($("<h2>").text(repo.name));
+        //$link.append($("<h3>").text(repo.language));
+        //$link.append($("<p>").text(repoDescription(repo)));
+        $item.appendTo("#num-following");
+      }
+
+      function randomItem(array) {
+        return array[Math.floor(Math.random() * array.length)];
+      }
+
+      var $flyzone;
+
+      function flyzone() {
+        if (!$flyzone) {
+          $flyzone = $("<div>").attr("id", "flyzone").prependTo(document.body);
+        }
+
+        return $flyzone;
+      }
+
+      var sizes = ["smaller", "small", "medium", "large", "fat"];
+
+      var sizeDimensions = {
+        "smaller": 50,
+        "small": 80,
+        "medium": 130,
+        "large": 200,
+        "fat": 300
+      };
+
+      function randomOpacity(threshold) {
+        var opacity = Math.random();
+
+        while (opacity < threshold) {
+          opacity = Math.random();
+        }
+
+        return opacity;
+      }
+
+      function makeLarry(sizeName, speed) {
+        var size = sizeDimensions[sizeName];
+        var top = Math.floor((flyzone().height() - size) * Math.random());
+
+        var $img = $("<img>")
+          .addClass("larry size-" + sizeName)
+          .attr("src", "assets/larry.png")
+          .attr("width", size)
+          .attr("height", size)
+          .css({
+            position: "absolute",
+            opacity: randomOpacity(0.4),
+            top: top,
+            left: -size
+          });
+
+        $img.prependTo(flyzone());
+
+        var left = flyzone().width() + size;
+
+        $img.animate({left: left}, speed, function () {
+          $img.remove();
+          makeRandomLarry();
+        });
+
+        return $img;
+      }
+
+      function makeRandomLarry() {
+        var size = randomItem(sizes);
+        var speed = Math.floor(Math.random() * 20000) + 15000;
+        return makeLarry(size, speed);
+      }
+
+      $(function () {
+        $("#logo").click(function () {
+          makeRandomLarry();
+        });
+      });
+
+      var match = (/\blarry(=(\d+))?\b/i).exec(window.location.search);
+
+      if (match) {
+        var n = parseInt(match[2]) || 20;
+
+        $(function () {
+          for (var i = 0; i < n; ++i) {
+            setTimeout(makeRandomLarry, Math.random() * n * 500);
+          }
+        });
+      }
+
+    })(jQuery);
+    </script>
+  </head>
+
+ <body data-spy="scroll" data-target=".subnav" data-offset="50">
+
+
+  <!-- Navbar
+    ================================================== -->
+    <div class="navbar navbar-fixed-top">
+      <div class="navbar-inner">
+        <div class="container">
+          <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </a>
+          <div class="nav-collapse">
+            <ul class="nav">
+              <li class="">
+                <a href="./index.html">Overview</a>
+              </li>
+              <li class="">
+                <a href="./scaffolding.html">Scaffolding</a>
+              </li>
+              <li class="active">
+                <a href="./base-css.html">Base CSS</a>
+              </li>
+              <li class="">
+                <a href="./components.html">Components</a>
+              </li>
+              <li class="">
+                <a href="./javascript.html">Javascript plugins</a>
+              </li>
+              <li class="">
+                <a href="./less.html">Using LESS</a>
+              </li>
+              <li class="divider-vertical"></li>
+              <li class="">
+                <a href="./download.html">Customize</a>
+              </li>
+              <li class="">
+                <a href="./examples.html">Examples</a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="container">
+ 
+
+      <!-- Main hero unit for a primary marketing message or call to action -->
+      <div class="hero-unit">
+        <h1>Nicola Bortignon OSS</h1>
+        <p>Even if you do something that others might consider wrong, you should at least be willing to talk about it and tell your parents what you're doing because you believe it's right.
+</p>
+        <p><br /><a class="btn btn-info btn-large">Learn more &raquo;</a></p>
+      </div>
+    <!-- MASTER HEAD -->
+		<header class="jumbotron masthead">
+	
+		   
+		  
+		</header>
+		
+		
+      <!-- Example row of columns -->
+      <div class="row">
+        <div class="span4">
+          <h2>Statistics</h2>
+          	<p>
+	            <a href="https://github.com/nicolabortignon/repositories"><span id="num-repos">&nbsp;</span> public repos</a>
+	            <br>
+	            <a href="https://github.com/nicolabortignon"><span id="num-members">&nbsp;</span> members</a>
+	          </p>
+	          <p class="email"><a href="mailto:opensource@twitter.com">opensource@twitter.com</a></p>
+        </div>
+        <div class="span4">
+          <h2>Recently updated</h2>
+          <ul id="recently-updated-repos"></ul>
+  
+       </div>
+		<div class="span4">
+         <h2>Super Heros i'm following</h2>
+         <ul id="num-following"></ul>
+ 
+      </div>
+      </div>
+ 	<hr>
+      <hr>
+
+      <footer>
+        <p><ul class="quick-links">
+	
+		    <li>
+		      <iframe class="github-btn" src="http://markdotto.github.com/github-buttons/github-btn.html?user=nicolabortignon&type=follow&count=false" allowtransparency="true" frameborder="0" scrolling="0" width="185px" height="20px"></iframe>
+		    </li>
+		    <li class="follow-btn">
+		      <a href="https://twitter.com/nicolabortignon" class="twitter-follow-button" data-width="158px" data-link-color="#0069D6" data-show-count="false">Follow @nicolabortignon</a>
+		    </li>
+		    
+		  </ul></p>
+      </footer>
+
+    </div> <!-- /container -->
+
+  <!-- Le javascript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script type="text/javascript" src="http://platform.twitter.com/widgets.js"></script>
+    <script src="js/jquery.js"></script>
+    <script src="js/google-code-prettify/prettify.js"></script>
+    <script src="js/bootstrap-transition.js"></script>
+    <script src="js/bootstrap-alert.js"></script>
+    <script src="js/bootstrap-modal.js"></script>
+    <script src="js/bootstrap-dropdown.js"></script>
+    <script src="js/bootstrap-scrollspy.js"></script>
+    <script src="js/bootstrap-tab.js"></script>
+    <script src="js/bootstrap-tooltip.js"></script>
+    <script src="js/bootstrap-popover.js"></script>
+    <script src="js/bootstrap-button.js"></script>
+    <script src="js/bootstrap-collapse.js"></script>
+    <script src="js/bootstrap-carousel.js"></script>
+    <script src="js/bootstrap-typeahead.js"></script>
+    <script src="js/application.js"></script>
+    <script type="text/javascript" src="js/jquery-1.7.1.min.js"></script>
+    <script type="text/javascript" src="js/strftime.js"></script>
+
+
+    <!-- Analytics
+    ================================================== -->
+    <script>
+      var _gauges = _gauges || [];
+      (function() {
+        var t   = document.createElement('script');
+        t.type  = 'text/javascript';
+        t.async = true;
+        t.id    = 'gauges-tracker';
+        t.setAttribute('data-site-id', '4f0dc9fef5a1f55508000013');
+        t.src = '//secure.gaug.es/track.js';
+        var s = document.getElementsByTagName('script')[0];
+        s.parentNode.insertBefore(t, s);
+      })();
+    </script>
+
+  </body>
+</html>
