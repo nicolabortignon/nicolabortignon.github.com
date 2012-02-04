@@ -3584,6 +3584,7 @@ div.header h1 {
 }
 
 li.repo {
+	background-color: #fcfcfc;
 }
 
 li.repo > a {
@@ -3601,36 +3602,21 @@ li.repo a:hover {
 }
 
 li.repo h2, li.repo h3, li.repo p {
-  margin: 10px 15px;
+ margin-left: 5px;
 }
 
 li.repo h2 {
-  margin-bottom: 2px;
   overflow: hidden;
 }
 
 li.repo h3 {
   font-size: 11px;
-  margin-top: 2px;
-  margin-bottom: 15px;
+  margin-top: -12px;
   color: #999;
 }
 
-.repo:after {
-  content: '';
-  position: absolute;
-  right: 0;
-  top: 0;
-  width: 0;
-  height: 0;
-  border-bottom: 50px solid transparent;
-  border-left: 50px solid transparent;
-  border-top: 1px solid #0080b0;
-  pointer-events: none;
-}
-
-.repo.javascript:after {
-  border-right-color: #333;
+.repo.javascript {
+  border-top: 1px solid #de3a42;
 }
 
 .repo.scala:after {

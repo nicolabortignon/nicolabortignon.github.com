@@ -116,10 +116,62 @@
             if (b.hotness < a.hotness) return -1;
             return 0;
           });
-
+		 // add global repo
           $.each(repos, function (i, repo) {
             addRepo(repo);
           });
+
+		  $languages = new Array();
+		  $totalSize = 0;
+		  // items per language
+		  $.each(repos, function (i, repo) {
+			
+			if(repo.language == null){
+				$languages["Other"] = 0+parseInt(repo.size);
+			} else {
+				if($languages[repo.language] == null)
+					$languages[repo.language] = parseInt(repo.size);
+				else 
+					$languages[repo.language] = $languages[repo.language]+parseInt(repo.size);
+
+			}
+			$totalSize += repo.size;
+    	   });
+		
+			//$languages = sortObj($languages);
+		
+			
+			//	<span class="abbr">Actionscript</span> 
+			//	<div class="progress">
+			//	  	<div class="bar" style="width: 20%;"></div>
+
+			
+			
+			//+" - "+($languages[""+i]/$totalSize)*100
+			for (i in $languages) { 
+				//	   	var $item = $("<div class=\"progress\">");
+			   			//$item = "actionscripts";
+				/*		var $name = $("<div class=\"bar\">").attr("style", "width: 60%;");
+						var $container = $("<div class=\"progress\">").append($name);
+						var $linkedAvatar = $("<a href=\"http://github.com/"+repo.login+"	\">").append($avatar);
+				
+						$item.append($name);
+			*/
+				//		$item.append($("</div>"))
+							var $value = $languages[i]/$totalSize*100;
+							var $item = $("<span>").text(i);
+						
+					       $item.append($("<div class=\"progress\">").append($("<div class=\"bar\" style=\"width: "+$value+"%;\">")));
+		
+					  $item.appendTo("#progressStatistics");
+				$value  = $languages[i];	
+			//	alert(i+"-"+$languages[i]/$totalSize*100) 
+				};
+			
+		//	alert("size"+i+" - "+repo.language +" - "+repo.size+" repo name"+repo.name);
+        // 	$array[repo.language] = repo.size;
+		//	alert("size"+i+" - "+repo.size);
+      
 
           // Sort by most-recently pushed to.
           repos.sort(function (a, b) {
@@ -133,7 +185,21 @@
           });
         });
       });
-
+	function sortObj(arr){
+				// Setup Arrays
+				var sortedKeys = new Array();
+				var sortedObj = {};
+				// Separate keys and sort them
+				for (var i in arr){
+					sortedKeys.push(i);
+				}
+				sortedKeys.sort();
+				// Reconstruct sorted obj based on keys
+				for (var i in sortedKeys){
+					sortedObj[sortedKeys[i]] = arr[sortedKeys[i]];
+				}
+				return sortedObj;
+			}
       $.getJSON("https://api.github.com/users/nicolabortignon/followers?callback=?", function (result) {
         var members = result.data;
         $(function () {
@@ -154,11 +220,10 @@
 	 function addFollowed(repo) {
 	
 		
-		   var $item = $("<div class=\"span1\" align=\"center\">");
-
-	        var $name = $("<a>").attr("href", "http://github.com/"+repo.login).text(repo.login);
+		   	var $item = $("<div class=\"span1\" align=\"center\">");
+   			var $name = $("<a>").attr("href", "http://github.com/"+repo.login).text(repo.login);
 			var $avatar = $("<img />").attr("src", ""+repo.avatar_url);
-			var $linkedAvatar = $("<a href=\"http://github.com/"+repo.login+"\">").append($avatar);
+			var $linkedAvatar = $("<a href=\"http://github.com/"+repo.login+"	\">").append($avatar);
 			$item.append($("<div class=\"avatar-frame\">").addClass("name").append($linkedAvatar));
 	        $item.append($("<span>").addClass("name").append($name));
 			$item.append($("</div>"))
@@ -332,25 +397,23 @@
 		
       <!-- Example row of columns -->
       <div class="row">
-        <div class="span3">
+        <div class="span4">
           <h2>Recently updated</h2>
           <ul id="recently-updated-repos"></ul>
   
        </div>
-	 <div class="span3">
+	 <div class="span4">
           <h2>Statistics</h2>
           	<p>
 	            <a href="https://github.com/nicolabortignon/repositories"><span id="num-repos">&nbsp;</span> public repos</a> &middot;
 	            <a href="https://github.com/nicolabortignon"><span id="num-members">&nbsp;</span> members</a>
 	
 	          </p>
-			<span class="abbr">Actionscript</span> 
-			<div class="progress">
-			  	<div class="bar" style="width: 20%;"></div>
-			
-			</div>
+		
+			 <ul id="progressStatistics"></ul>
+		
         </div>
-		<div class="span6">
+		<div class="span4">
          <h2>Super Heros i'm following</h2>
          <ul id="num-following"></ul>
  
