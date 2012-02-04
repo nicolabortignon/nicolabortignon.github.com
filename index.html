@@ -21,7 +21,7 @@
     </style>
     <link href="css/bootstrap-responsive.css" rel="stylesheet">
 	<link href='http://fonts.googleapis.com/css?family=Lilita+One' rel='stylesheet' type='text/css'>
-    <link rel="stylesheet" type="text/css" href="http://twitter.github.com/assets/grid.css">
+
     <!-- Le fav and touch icons -->
 
     <link rel="shortcut icon" href="images/favicon.ico">
@@ -35,9 +35,9 @@
 
       // Put custom repo URL's in this object, keyed by repo name.
       var repoUrls = {
-        "bootstrap": "http://twitter.github.com/bootstrap/",
-        "finagle": "http://twitter.github.com/finagle/",
-        "hogan.js": "http://twitter.github.com/hogan.js/"
+  //      "bootstrap": "http://twitter.github.com/bootstrap/",
+   //     "finagle": "http://twitter.github.com/finagle/",
+   //     "hogan.js": "http://twitter.github.com/hogan.js/"
       };
 
       function repoUrl(repo) {
@@ -59,8 +59,8 @@
 
         var $name = $("<a>").attr("href", repo.html_url).text(repo.name);
         $item.append($("<span>").addClass("name").append($name));
-
-        var $time = $("<a>").attr("href", repo.html_url + "/commits").text(strftime("%e/%m", repo.pushed_at));
+		$item.append("<br />");
+        var $time = $("<a>").attr("href", repo.html_url + "/commits").text(strftime("%R %D", repo.pushed_at));
         $item.append($("<span>").addClass("time").append($time));
 
         $item.append('<span class="bullet">&sdot;</span>');
@@ -85,6 +85,9 @@
         $item.appendTo("#repos");
       }
 
+	
+	
+	
       $.getJSON("https://api.github.com/users/nicolabortignon/repos?callback=?", function (result) {
         var repos = result.data;
 
@@ -155,7 +158,8 @@
 
 	        var $name = $("<a>").attr("href", "http://github.com/"+repo.login).text(repo.login);
 			var $avatar = $("<img />").attr("src", ""+repo.avatar_url);
-			$item.append($("<div class=\"avatar-frame\">").addClass("name").append($avatar));
+			var $linkedAvatar = $("<a href=\"http://github.com/"+repo.login+"\">").append($avatar);
+			$item.append($("<div class=\"avatar-frame\">").addClass("name").append($linkedAvatar));
 	        $item.append($("<span>").addClass("name").append($name));
 			$item.append($("</div>"))
 		
@@ -309,9 +313,14 @@
       <!-- Main hero unit for a primary marketing message or call to action -->
       <div class="hero-unit">
         <h1>Nicola Bortignon OSS</h1>
-        <p>Even if you do something that others might consider wrong, you should at least be willing to talk about it and tell your parents what you're doing because you believe it's right.
+    
+
+<blockquote>
+ 	 <p>Even if you do something that others might consider wrong, you should at least be willing to talk about it and tell your parents what you're doing because you believe it's right.
 </p>
-        <p><br /><a class="btn btn-info btn-large">Learn more &raquo;</a></p>
+  <small>Steve Wozniak</small>
+</blockquote>
+        <p><a class="btn btn-info btn-large">Learn more &raquo;</a></p>
       </div>
     <!-- MASTER HEAD -->
 		<header class="jumbotron masthead">
@@ -323,27 +332,32 @@
 		
       <!-- Example row of columns -->
       <div class="row">
-        <div class="span4">
-          <h2>Statistics</h2>
-          	<p>
-	            <a href="https://github.com/nicolabortignon/repositories"><span id="num-repos">&nbsp;</span> public repos</a>
-	            <br>
-	            <a href="https://github.com/nicolabortignon"><span id="num-members">&nbsp;</span> members</a>
-	          </p>
-	    
-        </div>
-        <div class="span4">
+        <div class="span3">
           <h2>Recently updated</h2>
           <ul id="recently-updated-repos"></ul>
   
        </div>
-		<div class="span4">
+	 <div class="span3">
+          <h2>Statistics</h2>
+          	<p>
+	            <a href="https://github.com/nicolabortignon/repositories"><span id="num-repos">&nbsp;</span> public repos</a> &middot;
+	            <a href="https://github.com/nicolabortignon"><span id="num-members">&nbsp;</span> members</a>
+	
+	          </p>
+			<span class="abbr">Actionscript</span> 
+			<div class="progress">
+			  	<div class="bar" style="width: 20%;"></div>
+			
+			</div>
+        </div>
+		<div class="span6">
          <h2>Super Heros i'm following</h2>
          <ul id="num-following"></ul>
  
       </div>
       </div>
  	<hr>
+ <ol id="repos"></ol>
       <hr>
 
       <footer>
@@ -353,7 +367,7 @@
 		      <iframe class="github-btn" src="http://markdotto.github.com/github-buttons/github-btn.html?user=nicolabortignon&type=follow&count=false" allowtransparency="true" frameborder="0" scrolling="0" width="185px" height="20px"></iframe>
 		    </li>
 		    <li class="follow-btn">
-		      <a href="https://twitter.com/nicolabortignon" class="twitter-follow-button" data-width="158px" data-link-color="#0069D6" data-show-count="false">Follow @nicolabortignon</a>
+		      <a href="https://twitter.com/nicolabortignon" class="twitter-follow-button" data-width="158px" data-link-color="#b82f2b" data-show-count="false">Follow @nicolabortignon</a>
 		    </li>
 		    
 		  </ul></p>

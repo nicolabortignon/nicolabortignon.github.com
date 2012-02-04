@@ -418,9 +418,9 @@ abbr {
   cursor: help;
 }
 blockquote {
-  padding: 0 0 0 15px;
+  padding: 0 0 0 2px;
   margin: 0 0 18px;
-  border-left: 5px solid #eeeeee;
+
 }
 blockquote p {
   margin-bottom: 0;
@@ -430,8 +430,9 @@ blockquote p {
 }
 blockquote small {
   display: block;
-  line-height: 18px;
+  line-height: 22px;
   color: #999999;
+  
 }
 blockquote small:before {
   content: '\2014 \00A0';
@@ -3152,7 +3153,7 @@ a.thumbnail:hover {
 }
 .progress {
   overflow: hidden;
-  height: 18px;
+	  height: 4px;
   margin-bottom: 18px;
   background-color: #f7f7f7;
   background-image: -moz-linear-gradient(top, #f5f5f5, #f9f9f9);
@@ -3177,15 +3178,15 @@ a.thumbnail:hover {
   font-size: 12px;
   text-align: center;
   text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.25);
-  background-color: #0e90d2;
-  background-image: -moz-linear-gradient(top, #149bdf, #0480be);
-  background-image: -ms-linear-gradient(top, #149bdf, #0480be);
-  background-image: -webkit-gradient(linear, 0 0, 0 100%, from(#149bdf), to(#0480be));
-  background-image: -webkit-linear-gradient(top, #149bdf, #0480be);
-  background-image: -o-linear-gradient(top, #149bdf, #0480be);
-  background-image: linear-gradient(top, #149bdf, #0480be);
+  background-color: #b82d3e;
+  background-image: -moz-linear-gradient(top, #b82f2b, #b82d3e);
+  background-image: -ms-linear-gradient(top, #b82f2b, #b82d3e);
+  background-image: -webkit-gradient(linear, 0 0, 0 100%, from(#b82f2b), to(#b82d3e));
+  background-image: -webkit-linear-gradient(top, #b82f2b, #b82d3e);
+  background-image: -o-linear-gradient(top, #b82f2b, #b82d3e);
+  background-image: linear-gradient(top, #b82f2b, #b82d3e);
   background-repeat: repeat-x;
-  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#149bdf', endColorstr='#0480be', GradientType=0);
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#b82f2b', endColorstr='#b82d3e', GradientType=0);
   -webkit-box-shadow: inset 0 -1px 0 rgba(0, 0, 0, 0.15);
   -moz-box-shadow: inset 0 -1px 0 rgba(0, 0, 0, 0.15);
   box-shadow: inset 0 -1px 0 rgba(0, 0, 0, 0.15);
@@ -3583,7 +3584,6 @@ div.header h1 {
 }
 
 li.repo {
-  height: 250px;
 }
 
 li.repo > a {
@@ -3606,7 +3606,6 @@ li.repo h2, li.repo h3, li.repo p {
 
 li.repo h2 {
   margin-bottom: 2px;
-  max-width: 160px;
   overflow: hidden;
 }
 
@@ -3626,7 +3625,7 @@ li.repo h3 {
   height: 0;
   border-bottom: 50px solid transparent;
   border-left: 50px solid transparent;
-  border-right: 50px solid #0080b0;
+  border-top: 1px solid #0080b0;
   pointer-events: none;
 }
 
@@ -3703,3 +3702,8 @@ height: 32px;
 border-radius: 2px; /* Opera 10.5, IE 9 */
 /*-moz-border-radius: 30px; Disabled for FF1+ */
 }
+
+.grid-1, .grid-2, .grid-3, .grid-4 {
+	
+}
+
