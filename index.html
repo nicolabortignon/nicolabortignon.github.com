@@ -60,7 +60,7 @@
         var $name = $("<a>").attr("href", repo.html_url).text(repo.name);
         $item.append($("<span>").addClass("name").append($name));
 
-        var $time = $("<a>").attr("href", repo.html_url + "/commits").text(strftime("%h %e, %Y", repo.pushed_at));
+        var $time = $("<a>").attr("href", repo.html_url + "/commits").text(strftime("%e/%m", repo.pushed_at));
         $item.append($("<span>").addClass("time").append($time));
 
         $item.append('<span class="bullet">&sdot;</span>');
@@ -151,11 +151,13 @@
 	 function addFollowed(repo) {
 	
 		
-		   var $item = $("<li>");
+		   var $item = $("<div class=\"span1\" align=\"center\">");
 
 	        var $name = $("<a>").attr("href", "http://github.com/"+repo.login).text(repo.login);
+			var $avatar = $("<img />").attr("src", ""+repo.avatar_url);
+			$item.append($("<div class=\"avatar-frame\">").addClass("name").append($avatar));
 	        $item.append($("<span>").addClass("name").append($name));
-
+			$item.append($("</div>"))
 		
 		
        // var $link = $("<a>").attr("href", repoUrl(repo)).appendTo($item);
@@ -328,7 +330,7 @@
 	            <br>
 	            <a href="https://github.com/nicolabortignon"><span id="num-members">&nbsp;</span> members</a>
 	          </p>
-	          <p class="email"><a href="mailto:opensource@twitter.com">opensource@twitter.com</a></p>
+	    
         </div>
         <div class="span4">
           <h2>Recently updated</h2>

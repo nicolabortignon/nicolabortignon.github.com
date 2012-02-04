@@ -3694,3 +3694,12 @@ li.repo h3 {
   height: 100%;
   overflow: hidden;
 }
+
+.avatar-frame{border: 1px solid #b5b2b4;}
+.avatar-frame,.avatar-frame img{
+width: 32px;
+height: 32px;
+-webkit-border-radius: 2px; /* Saf3+, Chrome */
+border-radius: 2px; /* Opera 10.5, IE 9 */
+/*-moz-border-radius: 30px; Disabled for FF1+ */
+}
