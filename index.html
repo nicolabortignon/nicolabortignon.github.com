@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
+    <head>
     <meta charset="utf-8">
     <title>Nicola Bortignon &hearts; Open Source Software</title>
     <meta name="description" content="">
@@ -14,13 +14,13 @@
     <!-- Le styles -->
     <link href="css/bootstrap.css" rel="stylesheet">
     <style type="text/css">
-      body {
-        padding-top: 60px;
-        padding-bottom: 40px;
-      }
-    </style>
+body {
+	padding-top: 60px;
+	padding-bottom: 40px;
+}
+</style>
     <link href="css/bootstrap-responsive.css" rel="stylesheet">
-	<link href='http://fonts.googleapis.com/css?family=Lilita+One' rel='stylesheet' type='text/css'>
+    <link href='http://fonts.googleapis.com/css?family=Lilita+One' rel='stylesheet' type='text/css'>
 
     <!-- Le fav and touch icons -->
 
@@ -28,7 +28,7 @@
     <link rel="apple-touch-icon" href="images/apple-touch-icon.png">
     <link rel="apple-touch-icon" sizes="72x72" href="images/apple-touch-icon-72x72.png">
     <link rel="apple-touch-icon" sizes="114x114" href="images/apple-touch-icon-114x114.png">
-  <script type="text/javascript" src="http://twitter.github.com/assets/jquery-1.7.1.min.js"></script>
+    <script type="text/javascript" src="http://twitter.github.com/assets/jquery-1.7.1.min.js"></script>
     <script type="text/javascript" src="js/strftime.js"></script>
     <script type="text/javascript">
     (function ($, undefined) {
@@ -324,146 +324,108 @@
 
     })(jQuery);
     </script>
-  </head>
+    </head>
 
- <body data-spy="scroll" data-target=".subnav" data-offset="50">
+    <body data-spy="scroll" data-target=".subnav" data-offset="50">
 
-
-  <!-- Navbar
+<!-- Navbar
     ================================================== -->
-    <div class="navbar navbar-fixed-top">
+<div class="navbar navbar-fixed-top">
       <div class="navbar-inner">
-        <div class="container">
-          <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-          </a>
+    <div class="container"> <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse"> <span class="icon-bar"></span> <span class="icon-bar"></span> <span class="icon-bar"></span> </a>
           <div class="nav-collapse">
-            <ul class="nav">
-              <li class="">
-                <a href="./index.html">Overview</a>
-              </li>
-              <li class="">
-                <a href="./scaffolding.html">Scaffolding</a>
-              </li>
-              <li class="active">
-                <a href="./base-css.html">Base CSS</a>
-              </li>
-              <li class="">
-                <a href="./components.html">Components</a>
-              </li>
-              <li class="">
-                <a href="./javascript.html">Javascript plugins</a>
-              </li>
-              <li class="">
-                <a href="./less.html">Using LESS</a>
-              </li>
-              <li class="divider-vertical"></li>
-              <li class="">
-                <a href="./download.html">Customize</a>
-              </li>
-              <li class="">
-                <a href="./examples.html">Examples</a>
-              </li>
+        <ul class="nav">
+              <li class=""> <a href="#mission">Mission</a> </li>
+              <li class=""> <a href="#statistics">Statistics</a> </li>
+              <li class=""> <a href="#projects">Projects</a> </li>
+              <li class=""> <a href="#credits">Credits</a> </li>
             </ul>
-          </div>
-        </div>
       </div>
+        </div>
+  </div>
     </div>
-
-    <div class="container">
- 
-
-      <!-- Main hero unit for a primary marketing message or call to action -->
-      <div class="hero-unit">
-        <h1>Nicola Bortignon OSS</h1>
-    
-
-<blockquote>
- 	 <p>Even if you do something that others might consider wrong, you should at least be willing to talk about it and tell your parents what you're doing because you believe it's right.
-</p>
-  <small>Steve Wozniak</small>
-</blockquote>
-        <p><a class="btn btn-info btn-large">Learn more &raquo;</a></p>
-      </div>
-    <!-- MASTER HEAD -->
-		<header class="jumbotron masthead">
-	
-		   
-		  
-		</header>
-		
-		
-      <!-- Example row of columns -->
-      <div class="row">
-        <div class="span4">
-          <h2>Recently updated</h2>
-          <ul id="recently-updated-repos"></ul>
-  
-       </div>
-	 <div class="span4">
-          <h2>Statistics</h2>
-          	<p>
-	            <a href="https://github.com/nicolabortignon/repositories"><span id="num-repos">&nbsp;</span> public repos</a> &middot;
-	            <a href="https://github.com/nicolabortignon"><span id="num-members">&nbsp;</span> members</a>
-	
-	          </p>
-		
-			 <ul id="progressStatistics"></ul>
-		
+<div class="container">
+      <section id="mission"> 
+    <!-- Main hero unit for a primary marketing message or call to action -->
+    <div class="hero-unit">
+          <h1>Nicola Bortignon OSS</h1>
+          <blockquote>
+        <p>Even if you do something that others might consider wrong, you should at least be willing to talk about it and tell your parents what you're doing because you believe it's right. </p>
+        <small>Steve Wozniak</small> </blockquote>
+          <p><a class="btn btn-info btn-large">Learn more &raquo;</a></p>
         </div>
-		<div class="span4">
-         <h2>Super Heros i'm following</h2>
-         <ul id="num-following"></ul>
- 
+  </section>
+      <!-- MASTER HEAD -->
+      <header class="jumbotron masthead"> </header>
+      <section id="statistics"> 
+    <!-- Example row of columns -->
+    <div class="row">
+          <div class="span3">
+        <h2>Recently updated</h2>
+        <ul id="recently-updated-repos">
+            </ul>
       </div>
+          <div class="span3">
+        <h2>Statistics</h2>
+        <p> <a href="https://github.com/nicolabortignon/repositories"><span id="num-repos">&nbsp;</span> public repos</a> &middot; <a href="https://github.com/nicolabortignon"><span id="num-members">&nbsp;</span> members</a> </p>
+        <ul id="progressStatistics">
+            </ul>
       </div>
- 	<hr>
- <ol id="repos"></ol>
+          <div class="span6">
+        <h2>Super Heros i'm following</h2>
+        <ul id="num-following">
+            </ul>
+      </div>
+        </div>
+  </section>
       <hr>
-
+      <section id="projects">
+    <h1>Projects</h1>
+    <ol id="repos">
+        </ol>
+  </section>
+      <hr>
+      <section id="credits">
+    <h1>Credits</h1>
+    <i>This page was made using <a href="http://twitter.github.com/bootstrap/">Bootstrap</a>, a fancy framework	designed with all the love in the world by <a href="http://twitter.com/">@twitter</a> in the persons of <a href="http://twitter.com/mdo" target="_blank">@mdo</a> and <a href="http://twitter.com/fat" target="_blank">@fat</a>.
+        <br />More Credits will follow.</i> </section>
+      <hr>
       <footer>
-        <p><ul class="quick-links">
-	
-		    <li>
-		      <iframe class="github-btn" src="http://markdotto.github.com/github-buttons/github-btn.html?user=nicolabortignon&type=follow&count=false" allowtransparency="true" frameborder="0" scrolling="0" width="185px" height="20px"></iframe>
-		    </li>
-		    <li class="follow-btn">
-		      <a href="https://twitter.com/nicolabortignon" class="twitter-follow-button" data-width="158px" data-link-color="#b82f2b" data-show-count="false">Follow @nicolabortignon</a>
-		    </li>
-		    
-		  </ul></p>
-      </footer>
+    <ul class="quick-links">
+          <li>
+        <iframe class="github-btn" src="http://markdotto.github.com/github-buttons/github-btn.html?user=nicolabortignon&type=follow&count=false" allowtransparency="true" frameborder="0" scrolling="0" width="185px" height="20px"></iframe>
+      </li>
+          <li class="follow-btn"> <a href="https://twitter.com/nicolabortignon" class="twitter-follow-button" data-width="158px" data-link-color="#b82f2b" data-show-count="false">Follow @nicolabortignon</a> </li>
+        </ul>
+  </footer>
+    </div>
+<!-- /container --> 
 
-    </div> <!-- /container -->
+<!-- Le javascript
+    ================================================== --> 
+<!-- Placed at the end of the document so the pages load faster --> 
+<script type="text/javascript" src="http://platform.twitter.com/widgets.js"></script> 
+<script src="js/jquery.js"></script> 
+<script src="js/google-code-prettify/prettify.js"></script> 
+<script src="js/bootstrap-transition.js"></script> 
+<script src="js/bootstrap-alert.js"></script> 
+<script src="js/bootstrap-modal.js"></script> 
+<script src="js/bootstrap-dropdown.js"></script> 
+<script src="js/bootstrap-scrollspy.js"></script> 
+<script src="js/bootstrap-tab.js"></script> 
+<script src="js/bootstrap-tooltip.js"></script> 
+<script src="js/bootstrap-popover.js"></script> 
+<script src="js/bootstrap-button.js"></script> 
+<script src="js/bootstrap-collapse.js"></script> 
+<script src="js/bootstrap-carousel.js"></script> 
+<script src="js/bootstrap-typeahead.js"></script> 
+<script src="js/application.js"></script> 
+<script type="text/javascript" src="js/jquery-1.7.1.min.js"></script> 
+<script type="text/javascript" src="js/strftime.js"></script> 
 
-  <!-- Le javascript
-    ================================================== -->
-    <!-- Placed at the end of the document so the pages load faster -->
-    <script type="text/javascript" src="http://platform.twitter.com/widgets.js"></script>
-    <script src="js/jquery.js"></script>
-    <script src="js/google-code-prettify/prettify.js"></script>
-    <script src="js/bootstrap-transition.js"></script>
-    <script src="js/bootstrap-alert.js"></script>
-    <script src="js/bootstrap-modal.js"></script>
-    <script src="js/bootstrap-dropdown.js"></script>
-    <script src="js/bootstrap-scrollspy.js"></script>
-    <script src="js/bootstrap-tab.js"></script>
-    <script src="js/bootstrap-tooltip.js"></script>
-    <script src="js/bootstrap-popover.js"></script>
-    <script src="js/bootstrap-button.js"></script>
-    <script src="js/bootstrap-collapse.js"></script>
-    <script src="js/bootstrap-carousel.js"></script>
-    <script src="js/bootstrap-typeahead.js"></script>
-    <script src="js/application.js"></script>
-    <script type="text/javascript" src="js/jquery-1.7.1.min.js"></script>
-    <script type="text/javascript" src="js/strftime.js"></script>
-
-
-    <!-- Analytics
-    ================================================== -->
-    <script>
+<!-- Analytics
+    ================================================== --> 
+<script>
       var _gauges = _gauges || [];
       (function() {
         var t   = document.createElement('script');
@@ -476,6 +438,5 @@
         s.parentNode.insertBefore(t, s);
       })();
     </script>
-
-  </body>
+</body>
 </html>
